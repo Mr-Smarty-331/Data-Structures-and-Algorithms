@@ -5,7 +5,7 @@ public:
             ans.push_back(curr);
             return;
         }
-        if (num>9||curr.size()>k){
+        if (n<=0||curr.size()>k){
             return;
         }
 
