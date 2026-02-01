@@ -21,7 +21,6 @@ public:
         for (int i=n-1;i>=0;i--){
             int cur=arr[i];
             while(st.size()&&(arr[st.top()]>=cur)){
-                // vec[st.top()]=i;
                 st.pop();
             }
             if (st.size()) vec[i]=st.top();
