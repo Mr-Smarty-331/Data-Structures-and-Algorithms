@@ -11,7 +11,7 @@ public:
                 if (arr[l]==0) z--;
                 l++;
             }
-            mx=max(mx,r-l+1);
+            if (z<=k) mx=max(mx,r-l+1);
             r++;
         }
         return mx;
