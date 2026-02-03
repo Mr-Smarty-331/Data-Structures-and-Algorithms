@@ -7,7 +7,7 @@ public:
 
         while(r<n){
             if (arr[r]==0) z++;
-            while(z>k){
+            if(z>k){
                 if (arr[l]==0) z--;
                 l++;
             }
