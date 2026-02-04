@@ -10,7 +10,7 @@ public:
             int ch=s[r]-'A';
             int len=r-l+1;
             arr[ch]++;
-            maxf=*max_element(arr,arr+26);
+            maxf=max(maxf,arr[ch]);
 
             if (len-maxf<=k) {
                 maxl=max(maxl,len);
