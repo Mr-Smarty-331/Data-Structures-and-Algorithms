@@ -17,23 +17,21 @@ public:
         }
         return false;
     }
+
     int subtree(TreeNode* root){
         TreeNode* node=root;
-        if (!check(node)) return 1;
         int l=0,r=0;
+        if (!check(node)) return 1;
 
-        if(check(node)){
+        else if(check(node)){
             if (node->left!=NULL) l+=subtree(node->left);
-        }
-        if(check(node)){
             if (node->right!=NULL) r+=subtree(node->right);
         }
         return (max(l,r)+1);
     }
+
     int maxDepth(TreeNode* root) {
         if (root==NULL) return 0;
-
         return subtree(root);
-
     }
 };
