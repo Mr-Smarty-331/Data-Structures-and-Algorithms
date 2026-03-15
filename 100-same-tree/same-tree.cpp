@@ -12,6 +12,7 @@
 class Solution {
 public:
     bool isSameTree(TreeNode* t1, TreeNode* t2) {
+/*
         queue<TreeNode*> q1,q2;
 
         vector<vector<int>> v1,v2;
@@ -67,5 +68,13 @@ public:
             v2.push_back(level);
         }
         return (v1==v2);
+*/
+        if (t1==NULL&&t2==NULL) return true;
+
+        if (t1==NULL || t2 == NULL) return false;
+
+        if (t1->val!= t2->val) return false;
+
+        return (isSameTree(t1->left,t2->left)&&isSameTree(t1->right,t2->right));
     }
 };
