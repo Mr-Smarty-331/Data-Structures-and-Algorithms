@@ -9,6 +9,7 @@
  */
 class Solution {
 public:
+/*
     bool search(TreeNode* root, TreeNode* p, stack<TreeNode*> &st){
         if (root==NULL) return false;
         
@@ -36,16 +37,22 @@ public:
             st2.pop();
         }
     }
+*/
 
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        stack <TreeNode*> st1;
-        stack <TreeNode*> st2;
+        if (root==NULL || root == p || root == q){
+            return root;
+        }
 
-        bool a = search(root,p,st1);
-        bool b = search(root,q,st2);
+        TreeNode* left = lowestCommonAncestor(root->left,p,q);
+        TreeNode* right = lowestCommonAncestor(root->right,p,q);
 
-        popper(st1,st2);
+        if (left==NULL) return right;
+        else if (right==NULL) return left;
 
-        return st1.top();
+        // both are non null thus this is the lca and thus we return this and other side would have NULL and we'll just have this side being returned and get the required lca (this ) as answer
+        else{
+            return root;
+        }
     }
 };
