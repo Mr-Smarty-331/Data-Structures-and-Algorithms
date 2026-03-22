@@ -6,14 +6,16 @@ public:
         sort(size.begin(),size.end());
         int ans=0;
         
-        int j=0;
+        int j=0,i=0;
 
-        for(int i=0;i<size.size();i++){
-            if(j>=greed.size()) break;
+        while(i<size.size()&&j<greed.size()){
+
             if (size[i]>=greed[j]){
                 ans++;
                 j++;
             }
+
+            i++;
         }
 
         return ans;
