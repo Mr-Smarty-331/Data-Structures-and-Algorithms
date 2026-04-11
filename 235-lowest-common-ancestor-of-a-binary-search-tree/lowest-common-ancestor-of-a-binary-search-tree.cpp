@@ -23,19 +23,22 @@ public:
         // else{
         //     return root;
         // }
+        int pVal = p->val;
+        int qVal = q->val;
 
-        int pv=p->val,qv=q->val;
+        if (qVal<pVal) return lowestCommonAncestor(root,q,p);
 
-        while(true){
-            int rv=root->val;
-            if (pv<rv&&qv<rv){
-                root=root->left;
+        TreeNode* node=root;
+
+        while (true) {
+            if (node->val >= pVal && node->val <= qVal) {
+                return node;
             }
-            else if(pv>rv&&qv>rv){
-                root=root->right;
+            else if (pVal < node->val && qVal < node->val) {
+                node = node->left;
             }
-            else{
-                return root;
+            else {
+                node=node->right;
             }
         }
     }
