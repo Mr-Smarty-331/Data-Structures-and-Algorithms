@@ -11,24 +11,14 @@
  */
 class Solution {
 public:
-    void inor(TreeNode* root, vector<int> & vec){
-        if (!root) return;
-
-        inor(root->left,vec);
-
-        vec.push_back(root->val);
-
-        inor(root->right,vec);
+    bool check(TreeNode* node,long long mn , long long mx) {
+        if (node==NULL) return true;
+        else if ((node->val <= mn  || node->val >= mx)) return false;
+        return check(node->left,mn,node->val) && 
+                check(node->right,node->val,mx);
     }
+
     bool isValidBST(TreeNode* root) {
-        vector<int> vec;
-
-        inor(root,vec);
-
-        for (int i=0;i<vec.size()-1;i++){
-            if (vec[i]>=vec[i+1]) return false;
-        }
-
-        return true;
+        return check (root, LLONG_MIN, LLONG_MAX);
     }
 };
