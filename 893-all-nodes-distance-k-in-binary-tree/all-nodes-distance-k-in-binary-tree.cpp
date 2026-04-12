@@ -35,11 +35,11 @@ public:
                 }
             }
         }
-        for(auto x:parent){
-            if (x.second==nullptr) continue;
-            cout<<x.first->val<<" "<<x.second->val<<endl;
+        // for(auto x:parent){
+        //     if (x.second==nullptr) continue;
+        //     cout<<x.first->val<<" "<<x.second->val<<endl;
 
-        }
+        // }
     }
 
     void check(TreeNode* target,int k){
