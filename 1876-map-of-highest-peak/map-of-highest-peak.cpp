@@ -1,14 +1,13 @@
 class Solution {
 private:
-    // struct Node{
-    //     int x,y,dist;
-    // };
+    struct Node{
+        int x,y,dist;
+    };
 
 public:
     vector<vector<int>> highestPeak(vector<vector<int>>& mat) {
-        // queue<Node> q;
-        queue<pair<pair<int,int>,int>> q;
-
+        queue<Node> q;
+        
         int m = mat.size();
         int n = mat[0].size();
 
@@ -18,7 +17,7 @@ public:
         for (int i=0;i<m;i++){
             for (int j=0;j<n;j++){
                 if (mat[i][j]==1) {
-                    q.push({{i,j},0});
+                    q.push({i,j,0});
                 }
             }
         }
@@ -27,15 +26,10 @@ public:
             int s = q.size();
 
             for(int i=0;i<s;i++) {
-                // Node t = q.front();
-                // int x = t.x;
-                // int y = t.y;
-                // int d = t.dist;
-
-                int x = q.front().first.first;
-                int y = q.front().first.second;
-
-                int d = q.front().second;
+                Node t = q.front();
+                int x = t.x;
+                int y = t.y;
+                int d = t.dist;
 
                 q.pop();
 
@@ -50,7 +44,7 @@ public:
                         int Y = it.second;
 
                         if ((X>=0 && X<m) && (Y>=0 && Y<n) && (!vis[X][Y])){
-                            q.push({{X,Y},d+1});
+                            q.push({X,Y,d+1});
                         }
                     }
                 }
