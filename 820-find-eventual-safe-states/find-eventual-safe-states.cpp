@@ -1,32 +1,34 @@
 class Solution {
-private: 
-    bool dfs(int node, vector<vector<int>>& adj, vector<int>& vis, vector<int>& path, vector<int>& ans){
-        path[node]=1;
-        vis[node]=1;
-
-        for(int nbr : adj[node]) {
-            if (!vis[nbr]) {
-                if (dfs(nbr,adj,vis,path,ans)==false) return false;
-            }
-            else if (path[nbr]) return false;
-        }
-        
-        path[node]=0;
-        ans.push_back(node);
-        return true;
-    }
 public:
-
     vector<int> eventualSafeNodes(vector<vector<int>>& adj) {
-        int n = adj.size();
+        int V = adj.size();
+        //we'll use the cycle detection via toposort technique
 
+        //reverse all the edges we need the nodes with no outdegree pref.
+        vector<int> indeg(V);
+        vector<vector<int>> adjn(V);
+        for (int i =0; i<V ; i++) {
+            for (int nbr : adj[i]){
+                adjn[nbr].push_back(i);
+                indeg[i]++;
+            }
+        }
+
+        queue<int> q;
         vector<int> ans;
-        vector<int> vis(n,0);
-        vector<int> path(n,0);
 
-        for(int i=0;i<n;i++){
-            if (!vis[i]) {
-                dfs(i,adj,vis, path, ans);
+        for (int z=0;z<V;z++ ) {
+            if (indeg[z]==0) q.push(z);
+        }
+
+        while(!q.empty()) {
+            int node = q.front();
+            q.pop();
+            ans.push_back(node);
+            
+            for (int nbr : adjn[node]) {
+                indeg[nbr]--;
+                if (indeg[nbr]==0) q.push(nbr);
             }
         }
         sort(ans.begin(),ans.end());
