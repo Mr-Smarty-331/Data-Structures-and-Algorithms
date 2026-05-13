@@ -38,13 +38,13 @@ public:
             unite(e[0],e[1],parent,size);
         }
 
-        set<int> st;
+        int cnt = 0;
 
         for (int i=0; i<n ;i++) {
-            st.insert(find(i,parent));
+            if (find(i,parent) == i) cnt++;
         }
 
-        return st.size()-1;
+        return cnt-1;
 
     }
 };
