@@ -11,26 +11,44 @@ public:
         int m = grid.size();
         int n = grid[0].size();
 
-        vector<vector<int>> dp(m,vector<int> (n,1));
-        dp[0][0] = grid[0][0];
+        // vector<vector<int>> dp(m,vector<int> (n,1));
+        // dp[0][0] = grid[0][0];
 
         // return recur(m-1,n-1,dp,grid);//memoization
-        for(int j = 1;j<n;j++ ){
-            dp[0][j] = dp[0][j-1] + grid[0][j];
-        }
+        // now space optimization
+        
+        // for(int j = 1;j<n;j++ ){
+        //     dp[0][j] = dp[0][j-1] + grid[0][j];
+        // }
         // now tabulation
-        for(int i = 1;i<m;i++) {
-            dp[i][0] = grid[i][0] + dp[i-1][0];
+        vector<int> dp(n,INT_MAX);
+        
+        for(int i = 0;i<m;i++) {
+            // dp[i][0] = grid[i][0] + dp[i-1][0];
+            vector<int> cur(n,0);
             for(int j = 0;j<n;j++ ){
+                if(i==0&&j==0) {
+                    cur[0] = grid[0][0];
+                    continue;
+                }
+                if (j == 0){
+                    cur[0] = dp[0]+grid[i][0];
+                    continue;
+                }
+
                 int up = INT_MAX,left = INT_MAX;
 
-                up = dp[i-1][j];
-                if (j>0) left = dp[i][j-1];
+                up = dp[j];
+                left = cur[j-1];
+                // if (j>0) left = dp[i][j-1];
 
-                dp[i][j] = min(up,left) + grid[i][j];
+                cur[j] = min(up,left) + grid[i][j];
+
             }
+            dp = cur;
         }
 
-        return dp[m-1][n-1];
+        return dp[n-1];
+
     }
 };
