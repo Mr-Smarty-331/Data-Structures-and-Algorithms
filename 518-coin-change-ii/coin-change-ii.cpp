@@ -20,8 +20,24 @@ public:
         // vector dp
         // recur fn from top(ans to base)
         int n = coins.size();
-        vector<vector<int>> dp(n,vector<int>(amount+1,-1));
+        vector<vector<unsigned int>> dp(n,vector<unsigned int>(amount+1,0));
+        dp[0][0] = 1;
+        for(int j = 1;j<=amount;j++){
+            if (j%coins[0] == 0) dp[0][j] =1;
+        }
 
-        return recur(n-1,amount,coins,dp);
+        for(int ind =1;ind<n;ind++) {
+            for(int sum = 0;sum<=amount;sum++) {
+                unsigned int take = 0;
+
+                if (coins[ind] <= sum) take = dp[ind][sum-coins[ind]];
+
+                unsigned int nottake = dp[ind-1][sum];
+
+                dp[ind][sum] = nottake + take;
+            }
+        }
+
+        return int (dp[n-1][amount]);
     }
 };
