@@ -24,6 +24,6 @@ public:
             double ans = myPow(x,n/2)*myPow(x,n/2)*val;
             return memo[{x,n}] = (pos==true)? ans:(-1)*ans;
         }
-        else return memo[{x,n}] = myPow(x*x,n/2);
+        else return memo[{x,n}] = myPow(x,n/2)*myPow(x,n/2);
     }
 };
