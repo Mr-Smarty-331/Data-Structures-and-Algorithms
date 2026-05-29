@@ -19,11 +19,24 @@ class Solution {
     }
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        // bs to find the col then bs to find the row
-        // waah bete moj krdi mene ,,,, ps. kuchh nhi kia -this was not it
 
-        for (int i = 0;i<matrix.size();i++){
-            if (bs(matrix,target,i)) return true;
+        // for (int i = 0;i<matrix.size();i++){
+        //     if (bs(matrix,target,i)) return true;
+        // }
+
+        // return false;
+        int n = matrix.size();
+        int m = matrix[0].size();
+
+        int row = 0;
+        int col = m-1;
+
+        while(row<n && col>=0){
+            int cur = matrix[row][col];
+            if (cur == target) return true;
+
+            if (cur > target) col--;
+            else row++;
         }
 
         return false;
