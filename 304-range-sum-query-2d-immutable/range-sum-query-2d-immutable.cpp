@@ -9,10 +9,11 @@ public:
         dp.assign(n+1,vector<int>(m+1,0));
 
         for(int i = 1;i<=n;i++){
-            vector<int> cur(m+1,0);
+            // vector<int> cur(m+1,0);
+            int sum = 0;
             for(int j = 1;j<=m;j++){
-                cur[j] = cur[j-1]+matrix[i-1][j-1];
-                dp[i][j] = cur[j] + dp[i-1][j];
+                sum += matrix[i-1][j-1];
+                dp[i][j] = sum + dp[i-1][j];
             }
         }
     }
