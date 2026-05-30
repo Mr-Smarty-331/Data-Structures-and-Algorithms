@@ -1,5 +1,5 @@
 class Solution {
-    int recur(int i , vector<int>& cost,vector<int>& dp){
+    int recur(int i , vector<int>& cost,vector<int> &dp){
         if (i<=1){
             return cost[i];
         }
