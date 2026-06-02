@@ -4,10 +4,7 @@ private:
         return s.size() < t.size();
     }
 
-    bool check(int suc,int pre,vector<string>& words){
-        string succ = words[suc];
-        string pred = words[pre];
-
+    bool check(string& succ,string& pred){
         if (succ.size()!=pred.size()+1) return false;
         int i = 0;
         int j = 0;
@@ -30,7 +27,7 @@ public:
 
         for(int i = 0;i<n;i++){
             for(int j = 0;j<i;j++){
-                if (check(i,j,words) && dp[i]<dp[j]+1){
+                if (check(words[i],words[j]) && dp[i]<dp[j]+1){
                     dp[i] = dp[j] +1;
                 }
             }
