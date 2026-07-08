@@ -5,6 +5,7 @@ class Solution {
 
         if(cur.size()==n){
             ans.push_back(cur);
+            return;
         }
 
         for(int i = 0;i<n;i++){
